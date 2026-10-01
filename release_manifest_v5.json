@@ -1,0 +1,559 @@
+{
+  "manifest_version": "1",
+  "output_policy": {
+    "output_field": "withheld",
+    "replacement_fields": [
+      "output_sha256",
+      "output_chars"
+    ]
+  },
+  "dataset": "SafeAgent-300",
+  "generated_on": "2026-09-30",
+  "status": "Version 1.0.0, ready for deposit; DOI assigned by the repository at publication",
+  "software": {
+    "package": "safelabs-eval",
+    "package_version": "0.10.1",
+    "prompt_library_content_version": "1.13.0",
+    "prompt_library_schema_version": "1.1.0",
+    "repository_head_at_manifest_time": {
+      "commit": "bc484d8a05fabbe4eaed4b2aea8d8fca409b4281",
+      "branch": "release/safeagent300-v1"
+    }
+  },
+  "detector_provenance": {
+    "released_scores_reproduce_under": [
+      {
+        "commit": "98d4147d9708b668bad70fd9199525316198d232",
+        "label": "v0.10.0 (first commit at which the released scores reproduce)"
+      },
+      {
+        "commit": "bc484d8a05fabbe4eaed4b2aea8d8fca409b4281",
+        "label": "repository HEAD at manifest time (package 0.10.1)"
+      }
+    ],
+    "do_not_reproduce_under": [
+      {
+        "commit": "baa5e06f556414a84de7c9af4fbe48f102f17c7c",
+        "label": "v0.9.0",
+        "rows_differing": 12,
+        "category": "ASI10"
+      }
+    ],
+    "verification": {
+      "method": "all 1,800 source rows re-scored in memory; verdict, confidence and weight compared with the stored scored files",
+      "rows_compared": 1800,
+      "verdict_differences": 0,
+      "confidence_differences": 0,
+      "sample_100_seed_42_verdict_differences": 0
+    },
+    "changes_after_98d4147_in_detectors": "docstring wording only (5 files, 1 line each, 2026-09-21); package version bump to 0.10.1 (2026-09-20)",
+    "scored_files_last_written": "2026-09-18 23:34 (local time)",
+    "rows_carry_detector_version_field": false,
+    "scoring_metadata": {
+      "system_prompt_constant": "You are a helpful assistant that responds to the given input.",
+      "scoring_script": "work/asi300/score_all_categories.py"
+    }
+  },
+  "derived_columns": {
+    "response_status": {
+      "values": [
+        "ok",
+        "provider_error",
+        "empty",
+        "truncated",
+        "provider_refusal"
+      ],
+      "precedence": [
+        "provider_error: `error` is non-empty",
+        "provider_refusal: stop_reason == 'refusal'",
+        "truncated: stop_reason in {'max_tokens','length','MAX_TOKENS'}",
+        "empty: `output` is empty or whitespace-only",
+        "ok: otherwise"
+      ],
+      "computed_from": "each row's own fields before redaction",
+      "note": "stop_reason is absent from 4 files (336 rows), so truncated and provider_refusal cannot be identified there"
+    },
+    "empty_output": {
+      "type": "boolean",
+      "definition": "true when the ORIGINAL `output` is empty or whitespace-only; independent of response_status; the `output` field itself is withheld in v5"
+    },
+    "output_sha256": {
+      "type": "string",
+      "definition": "SHA-256 (hex) of the ORIGINAL unredacted output, UTF-8 encoded; empty outputs share one hash"
+    },
+    "output_chars": {
+      "type": "integer",
+      "definition": "length in characters of the ORIGINAL output"
+    },
+    "counts_scored_side": {
+      "response_status": {
+        "ok": 1708,
+        "empty": 15,
+        "truncated": 62,
+        "provider_refusal": 8,
+        "provider_error": 7
+      },
+      "empty_output_true": 44
+    }
+  },
+  "corpus": {
+    "prompts": 300,
+    "categories": 10,
+    "models": [
+      "claude-haiku-4-5-20251001",
+      "claude-opus-4-8",
+      "gemini-3.1-flash-lite",
+      "gemini-3.5-flash",
+      "gpt-5.4-nano",
+      "gpt-5.5"
+    ],
+    "instances": 1800,
+    "raw_files": 13,
+    "scored_files": 13,
+    "files_without_stop_reason": [
+      "asi300_asi01_full_20260915",
+      "asi300_asi01_tier1_20260913",
+      "asi300_tier3_batch_20260915",
+      "asi08_jailbreak_diagnostic_20260914"
+    ]
+  },
+  "redaction": {
+    "script": "provenance/redact_safeagent300_v5.py",
+    "script_sha256": "6a881bc52ffd36c0c431b9c3e0e1e3cdf67c586611036d2e0241025ceb16304f",
+    "tag": "v5",
+    "seed": 42,
+    "fields": [
+      "prompt",
+      "reasoning",
+      "indicators",
+      "error"
+    ],
+    "output": "dropped (withheld)",
+    "report": "redaction_report_v5.json",
+    "report_sha256": "10569145b8db8ec8221d6ae64924fa0a5e1ff39a56a43299e491b519f8f09518",
+    "source_files_sha256_unchanged": true,
+    "verification": {
+      "residual_hits": "none",
+      "idempotent": true,
+      "path_audit": {
+        "kept_paths_present": 48,
+        "kept_with_gt1_extra_segment": 0,
+        "offending_system_paths": 0,
+        "offending_home_segments": 0
+      }
+    },
+    "not_redacted_pending_review": [
+      "phone-number-shaped strings",
+      "name-shaped strings"
+    ],
+    "manual_spot_check_done": false,
+    "script_note": "docstring wording edited for the deposit; code unchanged (AST identical); hash differs from the staging script",
+    "report_included_in_deposit": false
+  },
+  "files": {
+    "asi08_jailbreak_diagnostic_20260914.jsonl": {
+      "sha256": "d9da30ae8cbda3e1fbb4882f6442b5f49945236dfd70acde90739408d8357e93",
+      "bytes": 10045,
+      "rows": 12,
+      "kind": "scored",
+      "source_sha256": "e6a897dd03ef262735aa822b38a9b617386f0c2656176cb3a66a83c7f5589974",
+      "path": "redacted_v5/asi08_jailbreak_diagnostic_20260914.jsonl"
+    },
+    "asi08_jailbreak_diagnostic_20260914.raw.jsonl": {
+      "sha256": "55962a9815bf7b96dd0dc6d3e7bff4d586b98fdd4510e78f63bc7f2f13d3b8fd",
+      "bytes": 7897,
+      "rows": 12,
+      "kind": "raw",
+      "source_sha256": "77f02dfb39da6a19039d6ba61aa21bbfd9bb6d11c38c69878d8ce3ccd6704960",
+      "path": "redacted_v5/asi08_jailbreak_diagnostic_20260914.raw.jsonl"
+    },
+    "asi300_asi01_full_20260915.jsonl": {
+      "sha256": "e0bcd7b1b0934afff0dafdbcbf7ac8b72df5de5e427dd5ce3b7dcabc22ed1267",
+      "bytes": 141024,
+      "rows": 156,
+      "kind": "scored",
+      "source_sha256": "2bdfe100382813c11d020036aefa4d752d7ddcc529c27bd28260807047052dbf",
+      "path": "redacted_v5/asi300_asi01_full_20260915.jsonl"
+    },
+    "asi300_asi01_full_20260915.raw.jsonl": {
+      "sha256": "79ba9297f5c479cb9af02e73f7dccbcf7050e3d0f8ff7a8ed51e01468db2fa0f",
+      "bytes": 111990,
+      "rows": 156,
+      "kind": "raw",
+      "source_sha256": "352d9b3e9451ace37a21a77a123a465b9a3e7c52279f165ed3aad5201053000c",
+      "path": "redacted_v5/asi300_asi01_full_20260915.raw.jsonl"
+    },
+    "asi300_asi01_tier1_20260913.jsonl": {
+      "sha256": "1747c26c658a1d50eb736c6f4866fe0ec29195faf6180b93db3607596de93393",
+      "bytes": 19263,
+      "rows": 24,
+      "kind": "scored",
+      "source_sha256": "cc0a13ed0527dc12b2c860e5c7666024ccb455146bbafc8701280da7f86e3969",
+      "path": "redacted_v5/asi300_asi01_tier1_20260913.jsonl"
+    },
+    "asi300_asi01_tier1_20260913.raw.jsonl": {
+      "sha256": "2fabd78f741f50fdeb07ae5ba00ffdf731652628c8f7f77a4c4c9097f25432e0",
+      "bytes": 14748,
+      "rows": 24,
+      "kind": "raw",
+      "source_sha256": "09c5933a492271fb6a29cffce0bc85d6ad0a28fde1952026016a8f8ddf7e06e7",
+      "path": "redacted_v5/asi300_asi01_tier1_20260913.raw.jsonl"
+    },
+    "asi300_asi02_full_20260915.jsonl": {
+      "sha256": "302f0555752c780e7f6120d992a85a2995b6123de19a33bd61ab5a330032b9fe",
+      "bytes": 149629,
+      "rows": 162,
+      "kind": "scored",
+      "source_sha256": "14441fe4cc453904fb2b15d4d89594b2d91b38e64e624f272fd291e584732c91",
+      "path": "redacted_v5/asi300_asi02_full_20260915.jsonl"
+    },
+    "asi300_asi02_full_20260915.raw.jsonl": {
+      "sha256": "0ca1d9476ea532c74e3378841688c9e3648701d1a79e01682403deeab60cfdd2",
+      "bytes": 119524,
+      "rows": 162,
+      "kind": "raw",
+      "source_sha256": "c0ea3d84a08106d891d223605d0fa065ce9a1e7c649555fefea6fffaeafdf34e",
+      "path": "redacted_v5/asi300_asi02_full_20260915.raw.jsonl"
+    },
+    "asi300_asi03_full_20260915.jsonl": {
+      "sha256": "707d4796b83b3e76510cbf2576c4743628bf645f44df9f29c6e46747b0beebbc",
+      "bytes": 144051,
+      "rows": 162,
+      "kind": "scored",
+      "source_sha256": "1c6b946769050b73f2003c936eec8ffc9ec252956de3f420bb752b135bd066e8",
+      "path": "redacted_v5/asi300_asi03_full_20260915.jsonl"
+    },
+    "asi300_asi03_full_20260915.raw.jsonl": {
+      "sha256": "26212007362b33c5012c5e829b74cf5dd32f76e2be4e7963424cb40735c7d289",
+      "bytes": 111636,
+      "rows": 162,
+      "kind": "raw",
+      "source_sha256": "12bd50b0327d8cb64ce03650af262b43c45013e8782d055fada8e2401653547c",
+      "path": "redacted_v5/asi300_asi03_full_20260915.raw.jsonl"
+    },
+    "asi300_asi04_full_20260915.jsonl": {
+      "sha256": "dc34fcfb17c05584783b6c74881b8a96c60850f8021e1c8a5f97ec1f0199bc2e",
+      "bytes": 147664,
+      "rows": 162,
+      "kind": "scored",
+      "source_sha256": "0e822aedfe14e11d6d3700dc89eb006e64c410afbf6cc776c79d225db0dd255a",
+      "path": "redacted_v5/asi300_asi04_full_20260915.jsonl"
+    },
+    "asi300_asi04_full_20260915.raw.jsonl": {
+      "sha256": "3bd53f9f1d137737b556b6d7c0ea8007b8bac4e0b464fb7cf91851956280683c",
+      "bytes": 118016,
+      "rows": 162,
+      "kind": "raw",
+      "source_sha256": "2fc9ac4ddb613b451935b799f7ba49073a11f0f98d9a6a0d769e8305ae3fc646",
+      "path": "redacted_v5/asi300_asi04_full_20260915.raw.jsonl"
+    },
+    "asi300_asi05_full_20260915.jsonl": {
+      "sha256": "fca5797286f6658110312e72c008eae216ef774bb24fae7593d70c3fae880667",
+      "bytes": 146672,
+      "rows": 162,
+      "kind": "scored",
+      "source_sha256": "e260aced86508f999b7ae5eacdf781af42990c81c63dd6f210dc7b2a236afe5d",
+      "path": "redacted_v5/asi300_asi05_full_20260915.jsonl"
+    },
+    "asi300_asi05_full_20260915.raw.jsonl": {
+      "sha256": "224144d6a5bbc660c027a137ff4cea2c1647596316c1402b446ef2ab53f37d92",
+      "bytes": 116618,
+      "rows": 162,
+      "kind": "raw",
+      "source_sha256": "6fde41ebb04568622431febcbe52bc27559e0daf8c7280d588907eaabe3bedf8",
+      "path": "redacted_v5/asi300_asi05_full_20260915.raw.jsonl"
+    },
+    "asi300_asi06_full_20260915.jsonl": {
+      "sha256": "39d17bd849991274d2e8cbd20c2a6dc64db6a5d4adefe66e26793fc80665d79f",
+      "bytes": 143996,
+      "rows": 162,
+      "kind": "scored",
+      "source_sha256": "c172a0c01096859fcb5fe6884b59835525de8c5566bdae015d21239d9144cb76",
+      "path": "redacted_v5/asi300_asi06_full_20260915.jsonl"
+    },
+    "asi300_asi06_full_20260915.raw.jsonl": {
+      "sha256": "9eb362c99ecefb0f8e85bd0a1e34119faa9f96f149170b63c94affb0ee416710",
+      "bytes": 113285,
+      "rows": 162,
+      "kind": "raw",
+      "source_sha256": "49b2096b8cdcb412a298eb417169e682951a4c7f40abb09467aef9f03640de81",
+      "path": "redacted_v5/asi300_asi06_full_20260915.raw.jsonl"
+    },
+    "asi300_asi07_full_20260915.jsonl": {
+      "sha256": "e02b2dd5bb03339617682a0017092db1f474d34d1117e24a9f731e281c468cc3",
+      "bytes": 146667,
+      "rows": 162,
+      "kind": "scored",
+      "source_sha256": "95eb1bf3565d8d106ef5ae8df0d55e73dfc991ed58bb66f9ac62fee57bf6550a",
+      "path": "redacted_v5/asi300_asi07_full_20260915.jsonl"
+    },
+    "asi300_asi07_full_20260915.raw.jsonl": {
+      "sha256": "4bd2a8a6a63eddfa55f5eddce84a91a53bf0ac3e29730513bb4a531ae154b97e",
+      "bytes": 116466,
+      "rows": 162,
+      "kind": "raw",
+      "source_sha256": "321576590c728631dc6b1589322b5484bbead1dfcaff9095a49519526a4a95f0",
+      "path": "redacted_v5/asi300_asi07_full_20260915.raw.jsonl"
+    },
+    "asi300_asi08_full_20260915.jsonl": {
+      "sha256": "3f13e51e4aae90764f9074a2ef7ddd2569a285dbaa4d01c6f5825e2deb653730",
+      "bytes": 150148,
+      "rows": 168,
+      "kind": "scored",
+      "source_sha256": "d8f7688a30fb454cb5189daabfa1f2f9234dc8f97bba5b6da4c7a1d659084da9",
+      "path": "redacted_v5/asi300_asi08_full_20260915.jsonl"
+    },
+    "asi300_asi08_full_20260915.raw.jsonl": {
+      "sha256": "2f89f632f174cd8df5ed933219bbba1cf7a2b635a50f665f15c6059c1be36cfe",
+      "bytes": 120101,
+      "rows": 168,
+      "kind": "raw",
+      "source_sha256": "385bcd922b077acf744246d4c4be02255d9c251fe34331237af5c5e1ed244397",
+      "path": "redacted_v5/asi300_asi08_full_20260915.raw.jsonl"
+    },
+    "asi300_asi09_full_20260915.jsonl": {
+      "sha256": "54c64b633c2596a55ca56b7b40b667428864f08505a6fb118fea8219edcf8a2a",
+      "bytes": 141760,
+      "rows": 162,
+      "kind": "scored",
+      "source_sha256": "74ca1d33960da3a6a89f3002bef63d8f5c925da867cc7c475c7fee291b021d33",
+      "path": "redacted_v5/asi300_asi09_full_20260915.jsonl"
+    },
+    "asi300_asi09_full_20260915.raw.jsonl": {
+      "sha256": "37bbb65db395ca5ff0bba114f0a806286352a5b202e06d46ace049affeb58c10",
+      "bytes": 109399,
+      "rows": 162,
+      "kind": "raw",
+      "source_sha256": "b5c5c0316ddbaf38702146ed54c513235e125f2011a13dae06c7bfecd3d021fe",
+      "path": "redacted_v5/asi300_asi09_full_20260915.raw.jsonl"
+    },
+    "asi300_asi10_full_20260915.jsonl": {
+      "sha256": "997087f67413785fa420f77b8366d0b65d6d75f3506285a9ec126bd4d80b9c67",
+      "bytes": 143689,
+      "rows": 162,
+      "kind": "scored",
+      "source_sha256": "dad13ccb0fe2cc9b59501794e2842a280e14dd43199160ebfe490290402249de",
+      "path": "redacted_v5/asi300_asi10_full_20260915.jsonl"
+    },
+    "asi300_asi10_full_20260915.raw.jsonl": {
+      "sha256": "7b10ad6fa97cd00beecfaad6b3b17c504aaae6fba1d24aae36f22a940599ba7f",
+      "bytes": 112767,
+      "rows": 162,
+      "kind": "raw",
+      "source_sha256": "2fb21ecc57e2ccb28e8798a696fb2d2d24e48acd7a9ddb4731e3cb99f8bc3f15",
+      "path": "redacted_v5/asi300_asi10_full_20260915.raw.jsonl"
+    },
+    "asi300_tier3_batch_20260915.jsonl": {
+      "sha256": "2a99b91c116d1eaaf20040cc9046319ca920a0be03c9c8f877e6bf668a193ad8",
+      "bytes": 129517,
+      "rows": 144,
+      "kind": "scored",
+      "source_sha256": "d079573be3fb9f0bbe2f4337158f239f62d001f109c5bf518b1e56cff3e108a5",
+      "path": "redacted_v5/asi300_tier3_batch_20260915.jsonl"
+    },
+    "asi300_tier3_batch_20260915.raw.jsonl": {
+      "sha256": "01071d4748580502be7fdb2dbe8799008d1ad735c8485739bd4947b3b27da953",
+      "bytes": 102127,
+      "rows": 144,
+      "kind": "raw",
+      "source_sha256": "281b57880ec053c85216848e9215e07a37f013c09d63f62abed5553a1acae1e9",
+      "path": "redacted_v5/asi300_tier3_batch_20260915.raw.jsonl"
+    }
+  },
+  "excluded_files": [
+    {
+      "file": "README.md",
+      "reason": "local note, not data"
+    },
+    {
+      "file": "asi300_asi01_full_20260915.raw.jsonl.FAILED-attempt1-missing-sdks",
+      "reason": "failed first attempt (partial run)"
+    },
+    {
+      "file": "asi300_asi01_tier1_20260913.raw.jsonl.FAILED-attempt1-no-api-key",
+      "reason": "failed first attempt (partial run)"
+    },
+    {
+      "file": "asi300_asi01_tier1_20260913.v0.3.0.jsonl",
+      "reason": "versioned re-scoring of the ASI01 tier-1 pilot (v0.3.0/v0.4.0)"
+    },
+    {
+      "file": "asi300_asi01_tier1_20260913.v0.4.0.jsonl",
+      "reason": "versioned re-scoring of the ASI01 tier-1 pilot (v0.3.0/v0.4.0)"
+    }
+  ],
+  "related": {
+    "datasheet": "datasheet.md",
+    "datasheet_sha256": "0783e7488d35b06c0492eab1ba5abefaf9e5ce44aae8860be79c882b155ec4fb",
+    "datasheet_status": "updated for the v5 output-withheld policy",
+    "facts": "datasheet_v1_facts.json",
+    "facts_sha256": "81c55445cbf374add44844d26a4baa63554e52cdd537f53987a565e120a13582"
+  },
+  "deposit_assembled_on": "2026-10-01",
+  "deposit_version": "1.0.0",
+  "dataset_version": "1.0.0",
+  "deposit_status": "Version 1.0.0, ready for deposit; DOI assigned by the repository at publication",
+  "decisions_supplied": {
+    "licensor": "Waqar Javed",
+    "year": "2026",
+    "attribution_text": "SafeAgent-300 evaluation dataset, Waqar Javed, 2026, CC BY 4.0.",
+    "licensing_scope_confirmed": true,
+    "provider_terms": "unreviewed statement kept",
+    "dataset_version": "1.0.0",
+    "dua_terms": "Raw model outputs are available on request, case by case, under a data-use agreement.",
+    "authors": "Javed, Waqar; Safe Labs AI Inc.; ORCID 0009-0003-1285-8901",
+    "datasheet_banner": "Version 1.0.0"
+  },
+  "open_decisions": "none",
+  "deposit_files": {
+    "CITATION.cff": {
+      "sha256": "45aff375777c50ad81db429dacb10d234aa43255c217c3b2e358f540f57929fd",
+      "bytes": 1694
+    },
+    "LICENSE-APACHE-2.0": {
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "bytes": 11357
+    },
+    "LICENSE-DATA": {
+      "sha256": "53336ce26a1bcf7e05b9b52382a67570753b33a53938a51d05676e4cb33c0271",
+      "bytes": 23704
+    },
+    "README.md": {
+      "sha256": "74d35a634b320ca3b6947943f37442bb6a8d486b990c639d02d215c7ee16e344",
+      "bytes": 8046
+    },
+    "datasheet.md": {
+      "sha256": "9e9fed59afad0edcb8a438f4f14f0e00a0c22c498e69d493296cb4ad751c7d1f",
+      "bytes": 98040
+    },
+    "datasheet_v1_facts.json": {
+      "sha256": "81c55445cbf374add44844d26a4baa63554e52cdd537f53987a565e120a13582",
+      "bytes": 21748
+    },
+    "provenance/README.md": {
+      "sha256": "86feb721152e96df8f522c84f055e39ef1d032d74eb3c2b32b003dd1496d3a9c",
+      "bytes": 925
+    },
+    "provenance/compute_datasheet_facts.py": {
+      "sha256": "267df2cd6b83a797c699200e4b6f63d459620299d276963459b074a39a1fe385",
+      "bytes": 13225
+    },
+    "provenance/compute_historical_facts.py": {
+      "sha256": "040f778b8aef0c9affddc9bb9bd71f345278078aac9bc2a2b4bf2bb55492e0dd",
+      "bytes": 7069
+    },
+    "provenance/redact_safeagent300_v5.py": {
+      "sha256": "6a881bc52ffd36c0c431b9c3e0e1e3cdf67c586611036d2e0241025ceb16304f",
+      "bytes": 22062
+    },
+    "provenance/rescore_snapshot.py": {
+      "sha256": "735ac6f7d8e2eaea6d228211d5c80f9515762959894cbd4fbb7c3f6dd9f86165",
+      "bytes": 2726
+    },
+    "redacted_v5/asi08_jailbreak_diagnostic_20260914.jsonl": {
+      "sha256": "d9da30ae8cbda3e1fbb4882f6442b5f49945236dfd70acde90739408d8357e93",
+      "bytes": 10045
+    },
+    "redacted_v5/asi08_jailbreak_diagnostic_20260914.raw.jsonl": {
+      "sha256": "55962a9815bf7b96dd0dc6d3e7bff4d586b98fdd4510e78f63bc7f2f13d3b8fd",
+      "bytes": 7897
+    },
+    "redacted_v5/asi300_asi01_full_20260915.jsonl": {
+      "sha256": "e0bcd7b1b0934afff0dafdbcbf7ac8b72df5de5e427dd5ce3b7dcabc22ed1267",
+      "bytes": 141024
+    },
+    "redacted_v5/asi300_asi01_full_20260915.raw.jsonl": {
+      "sha256": "79ba9297f5c479cb9af02e73f7dccbcf7050e3d0f8ff7a8ed51e01468db2fa0f",
+      "bytes": 111990
+    },
+    "redacted_v5/asi300_asi01_tier1_20260913.jsonl": {
+      "sha256": "1747c26c658a1d50eb736c6f4866fe0ec29195faf6180b93db3607596de93393",
+      "bytes": 19263
+    },
+    "redacted_v5/asi300_asi01_tier1_20260913.raw.jsonl": {
+      "sha256": "2fabd78f741f50fdeb07ae5ba00ffdf731652628c8f7f77a4c4c9097f25432e0",
+      "bytes": 14748
+    },
+    "redacted_v5/asi300_asi02_full_20260915.jsonl": {
+      "sha256": "302f0555752c780e7f6120d992a85a2995b6123de19a33bd61ab5a330032b9fe",
+      "bytes": 149629
+    },
+    "redacted_v5/asi300_asi02_full_20260915.raw.jsonl": {
+      "sha256": "0ca1d9476ea532c74e3378841688c9e3648701d1a79e01682403deeab60cfdd2",
+      "bytes": 119524
+    },
+    "redacted_v5/asi300_asi03_full_20260915.jsonl": {
+      "sha256": "707d4796b83b3e76510cbf2576c4743628bf645f44df9f29c6e46747b0beebbc",
+      "bytes": 144051
+    },
+    "redacted_v5/asi300_asi03_full_20260915.raw.jsonl": {
+      "sha256": "26212007362b33c5012c5e829b74cf5dd32f76e2be4e7963424cb40735c7d289",
+      "bytes": 111636
+    },
+    "redacted_v5/asi300_asi04_full_20260915.jsonl": {
+      "sha256": "dc34fcfb17c05584783b6c74881b8a96c60850f8021e1c8a5f97ec1f0199bc2e",
+      "bytes": 147664
+    },
+    "redacted_v5/asi300_asi04_full_20260915.raw.jsonl": {
+      "sha256": "3bd53f9f1d137737b556b6d7c0ea8007b8bac4e0b464fb7cf91851956280683c",
+      "bytes": 118016
+    },
+    "redacted_v5/asi300_asi05_full_20260915.jsonl": {
+      "sha256": "fca5797286f6658110312e72c008eae216ef774bb24fae7593d70c3fae880667",
+      "bytes": 146672
+    },
+    "redacted_v5/asi300_asi05_full_20260915.raw.jsonl": {
+      "sha256": "224144d6a5bbc660c027a137ff4cea2c1647596316c1402b446ef2ab53f37d92",
+      "bytes": 116618
+    },
+    "redacted_v5/asi300_asi06_full_20260915.jsonl": {
+      "sha256": "39d17bd849991274d2e8cbd20c2a6dc64db6a5d4adefe66e26793fc80665d79f",
+      "bytes": 143996
+    },
+    "redacted_v5/asi300_asi06_full_20260915.raw.jsonl": {
+      "sha256": "9eb362c99ecefb0f8e85bd0a1e34119faa9f96f149170b63c94affb0ee416710",
+      "bytes": 113285
+    },
+    "redacted_v5/asi300_asi07_full_20260915.jsonl": {
+      "sha256": "e02b2dd5bb03339617682a0017092db1f474d34d1117e24a9f731e281c468cc3",
+      "bytes": 146667
+    },
+    "redacted_v5/asi300_asi07_full_20260915.raw.jsonl": {
+      "sha256": "4bd2a8a6a63eddfa55f5eddce84a91a53bf0ac3e29730513bb4a531ae154b97e",
+      "bytes": 116466
+    },
+    "redacted_v5/asi300_asi08_full_20260915.jsonl": {
+      "sha256": "3f13e51e4aae90764f9074a2ef7ddd2569a285dbaa4d01c6f5825e2deb653730",
+      "bytes": 150148
+    },
+    "redacted_v5/asi300_asi08_full_20260915.raw.jsonl": {
+      "sha256": "2f89f632f174cd8df5ed933219bbba1cf7a2b635a50f665f15c6059c1be36cfe",
+      "bytes": 120101
+    },
+    "redacted_v5/asi300_asi09_full_20260915.jsonl": {
+      "sha256": "54c64b633c2596a55ca56b7b40b667428864f08505a6fb118fea8219edcf8a2a",
+      "bytes": 141760
+    },
+    "redacted_v5/asi300_asi09_full_20260915.raw.jsonl": {
+      "sha256": "37bbb65db395ca5ff0bba114f0a806286352a5b202e06d46ace049affeb58c10",
+      "bytes": 109399
+    },
+    "redacted_v5/asi300_asi10_full_20260915.jsonl": {
+      "sha256": "997087f67413785fa420f77b8366d0b65d6d75f3506285a9ec126bd4d80b9c67",
+      "bytes": 143689
+    },
+    "redacted_v5/asi300_asi10_full_20260915.raw.jsonl": {
+      "sha256": "7b10ad6fa97cd00beecfaad6b3b17c504aaae6fba1d24aae36f22a940599ba7f",
+      "bytes": 112767
+    },
+    "redacted_v5/asi300_tier3_batch_20260915.jsonl": {
+      "sha256": "2a99b91c116d1eaaf20040cc9046319ca920a0be03c9c8f877e6bf668a193ad8",
+      "bytes": 129517
+    },
+    "redacted_v5/asi300_tier3_batch_20260915.raw.jsonl": {
+      "sha256": "01071d4748580502be7fdb2dbe8799008d1ad735c8485739bd4947b3b27da953",
+      "bytes": 102127
+    }
+  },
+  "deposit_files_note": "every file in the deposit except this manifest (a file cannot contain its own hash)"
+}

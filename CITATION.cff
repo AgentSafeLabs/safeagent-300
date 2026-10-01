@@ -1,0 +1,37 @@
+# This file describes the DATASET; the software citation file in the safelabs-eval repository is separate and unchanged.
+cff-version: 1.2.0
+message: "If you use this dataset, please cite it using the metadata below."
+type: dataset
+title: "SafeAgent-300: a scored adversarial prompt corpus for evaluating AI agent safety (model outputs withheld)"
+abstract: >-
+  300 single-turn adversarial prompts in 10 OWASP-inspired categories (ASI01-ASI10; not OWASP's official
+  list), each run once against 6 language models (1,800 instances) and scored by a pattern-based detector
+  suite. Released as 13 raw and 13 scored files with detector verdicts and scores and derived columns
+  (response_status, empty_output, output_sha256, output_chars). The model responses themselves are withheld;
+  only a SHA-256 and a length are released. Prompts are under Apache-2.0; scores and derived fields are
+  licensed under CC BY 4.0.
+authors:
+  - family-names: "Javed"
+    given-names: "Waqar"
+    affiliation: "Safe Labs AI Inc."
+    orcid: "https://orcid.org/0009-0003-1285-8901"
+version: "1.0.0"
+license:
+  - CC-BY-4.0   # scores and derived fields (confirmed by the author; see LICENSE-DATA)
+  - Apache-2.0  # prompts and library metadata
+keywords:
+  - AI agent safety
+  - adversarial prompts
+  - red teaming
+  - benchmark
+  - prompt injection
+references:
+  - type: software
+    title: "safelabs-eval"
+    authors:
+      - family-names: Javed
+        given-names: Waqar
+        affiliation: "Safe Labs AI Inc."
+    version: 0.10.1
+    repository-code: "https://github.com/AgentSafeLabs/safelabs-eval"
+    notes: "Software used to generate and score the dataset (prompt library 1.13.0, detector logic v0.10.0)."
