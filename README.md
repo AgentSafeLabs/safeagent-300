@@ -2,6 +2,8 @@
 
 **Status: Version 1.0.0.**
 
+[![DOI](https://zenodo.org/badge/1400767767.svg)](https://doi.org/10.5281/zenodo.23092031)
+
 ## What this is
 
 SafeAgent-300 is a scored set of adversarial prompts for evaluating whether AI agents and language models handle
@@ -90,9 +92,10 @@ See `LICENSE-DATA`.
 
 ## Citation
 
-Dataset: Waqar Javed (Safe Labs AI Inc.; ORCID https://orcid.org/0009-0003-1285-8901), *SafeAgent-300*, 1.0.0. DOI: assigned by the repository when the record is published; cite the DOI shown on the record page. See `CITATION.cff`. The dataset's DOI, once minted, is
+Dataset: Waqar Javed (Safe Labs AI Inc.; ORCID https://orcid.org/0009-0003-1285-8901), *SafeAgent-300*, 1.0.0. DOI for this version (1.0.0): 10.5281/zenodo.23092032 (https://doi.org/10.5281/zenodo.23092032). DOI for all versions, always resolving to the latest: 10.5281/zenodo.23092031. See `CITATION.cff`. The dataset's DOI is
 distinct from the DOIs of the related preprints (posted September 22, 2026; manuscripts under peer review): SafeAgent-300, 10.21203/rs.3.rs-11102288/v1;
 ABC-Calibration, 10.21203/rs.3.rs-11102046/v1; AgentPort-Bench, 10.21203/rs.3.rs-11102299/v1.
+The archived v1.0.0 Zenodo record contains the files as released; later commits to main add only the DOI information.
 
 ## Reading a file
 

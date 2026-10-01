@@ -50,7 +50,7 @@ Four columns are added: `response_status` (`ok` 1,708, `truncated` 62, `empty` 1
 
 **Related preprints.** Three preprints (posted September 22, 2026; manuscripts under peer review), DOIs
 10.21203/rs.3.rs-11102288/v1 (SafeAgent-300), -11102046/v1 (ABC-Calibration) and -11102299/v1 (AgentPort-Bench), are
-related to this dataset (§8). The dataset's own DOI, once minted, is distinct from them.
+related to this dataset (§8). The dataset's own DOI is distinct from them.
 
 **Open items.** Appendix B lists **24 claims**: 13 `[AUTHOR-STATED]` and 11
 `[UNVERIFIED]`. The funder, contributor and SA01–SA10 mapping statements were supplied by the author.
@@ -693,7 +693,7 @@ directories are gitignored (and `results/` contains raw model completions never
 committed to the public repository, per `docs/DATASET_CARD.md`). **Planned, not
 yet done:** a separate release of the 26-file copy **with model outputs withheld** (`redacted_v5`), with its
 own DOI (distinct from the three preprints' DOIs and from any paper DOI), its own citation file and data
-license; the software `CITATION.cff` stays unchanged. No DOI is recorded in the files of this deposit; the repository assigns one at release. The withheld outputs
+license; the software `CITATION.cff` stays unchanged. The v1.0.0 files carry no DOI; the dataset's DOI is on its Zenodo record: 10.5281/zenodo.23092032 (this version) and 10.5281/zenodo.23092031 (all versions). The withheld outputs
 would be available on request under a data-use agreement, the practice the SafeAgent-300 preprint describes
 in its Section 7 `[S: SafeAgent-300 preprint §7; the release plan is AUTHOR-STATED]`.
 
@@ -733,7 +733,7 @@ tests locking in both the fix and its boundary (`tests/test_scoring.py`). `[AUTH
 2. Eleven claims remain `[UNVERIFIED]` in this release (Appendix B). They are published with that label; treat them as unconfirmed.
 3. Decide what to do about the 336 rows without `stop_reason` and the 7 provider-blocked
    gpt-5.5 rows (document or re-run; §2.7, §2.9).
-4. The dataset DOI is assigned by the repository at release (§6).
+4. The v1.0.0 files carry no DOI; the dataset's DOI is on its Zenodo record: 10.5281/zenodo.23092032 (this version) and 10.5281/zenodo.23092031 (all versions). (§6)
 5. ASI08-012's claimed-autonomous-action shape (§2.8) remains an unaddressed, confirmed
    one-off — revisit if a second real-world instance surfaces `[AUTHOR-STATED]`.
 6. The known limitations catalogued in §2.7 are individually scoped follow-up items, not
@@ -753,7 +753,7 @@ used this dataset or its sources `[S: the three PDFs]`:
 - *AgentPort-Bench: A Controlled Seven-Framework Evaluation of Agentic AI Security Portability* —
   DOI 10.21203/rs.3.rs-11102299/v1 (preprint).
 
-The DOI of this dataset, once minted, is **distinct from these three DOIs**.
+The DOI of this dataset is **distinct from these three DOIs**.
 
 **SafeAgent-300 preprint and this release** `[S: preprint_crosscheck_report.md]`:
 - **Detector version.** The preprint scores with v0.8.1 (its §4.2); its Table 4 (per-model Fail/Vuln) and Table 5
