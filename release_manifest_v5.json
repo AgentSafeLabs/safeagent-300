@@ -407,8 +407,8 @@
   "open_decisions": "none",
   "deposit_files": {
     "CITATION.cff": {
-      "sha256": "45aff375777c50ad81db429dacb10d234aa43255c217c3b2e358f540f57929fd",
-      "bytes": 1694
+      "sha256": "9834371d491467f6eba30cfe38848307921209dfb7c1665d037201539a47f39c",
+      "bytes": 1661
     },
     "LICENSE-APACHE-2.0": {
       "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",

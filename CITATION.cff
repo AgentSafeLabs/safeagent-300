@@ -16,9 +16,7 @@ authors:
     affiliation: "Safe Labs AI Inc."
     orcid: "https://orcid.org/0009-0003-1285-8901"
 version: "1.0.0"
-license:
-  - CC-BY-4.0   # scores and derived fields (confirmed by the author; see LICENSE-DATA)
-  - Apache-2.0  # prompts and library metadata
+license: CC-BY-4.0   # scores and derived fields; prompts are Apache-2.0 (see abstract and LICENSE-APACHE-2.0)
 keywords:
   - AI agent safety
   - adversarial prompts
